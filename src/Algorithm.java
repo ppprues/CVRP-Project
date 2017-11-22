@@ -1,5 +1,7 @@
 public class Algorithm
 {
+    private static DataReader reader;
+
     private static void a()
     {
         for(int i = 0; i < array.length; i++)
@@ -12,7 +14,8 @@ public class Algorithm
     }
     public static void main(String[] args)
     {
-        int minimumCost = -1;
+        reader = new DataReader();
+        reader.close();
 
         System.out.println("Heeloo World");
     }
