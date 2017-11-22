@@ -1,8 +1,10 @@
 public class Algorithm
 {
+    private static DataReader reader;
     public static void main(String[] args)
     {
-        int minimumCost = -1;
+        reader = new DataReader();
+        reader.close();
 
         System.out.println("Heeloo World");
     }

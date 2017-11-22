@@ -51,15 +51,15 @@ public class DataReader extends TextFileReader {
     private static void calNodes()
     {
 
-        String curLine=nodeFile.getNextLine();
-        int i=0;
-        while (curLine!=null)
+        String curLine = nodeFile.getNextLine();
+        int i = 0;
+        while (curLine != null)
         {
             String fields[] = curLine.split(",");
-            nodes[i+1][0] = Integer.parseInt(fields[0]);
-            nodes[i+1][1]= Integer.parseInt(fields[1]);
+            nodes[i + 1][0] = Integer.parseInt(fields[0]);
+            nodes[i + 1][1] = Integer.parseInt(fields[1]);
 
-            curLine=nodeFile.getNextLine();
+            curLine = nodeFile.getNextLine();
         }
 
 
@@ -67,22 +67,21 @@ public class DataReader extends TextFileReader {
 
     private static void calDemands()
     {
-        int i =0;
+        int i = 0;
         String curLine = demandFile.getNextLine();
-        while (curLine!=null)
+        while (curLine != null)
         {
-            demands[i+1] =  Integer.parseInt(curLine);
+            demands[i + 1] = Integer.parseInt(curLine);
             i++;
-            curLine= demandFile.getNextLine();
+            curLine = demandFile.getNextLine();
         }
-
     }
 
     private static void calTruckLoad()
     {
-        int i =0;
+        int i = 0;
         String curLine = truckFile.getNextLine();
-        while (curLine!=null)
+        while (curLine != null)
         {
             String fields[] = curLine.split(",");
             truckLoad[i][0] = Float.parseFloat(fields[0]);
@@ -95,11 +94,11 @@ public class DataReader extends TextFileReader {
 
     private static void calProductWeight()
     {
-        int i=0;
+        int i = 0;
         String curLine = productFile.getNextLine();
-        while (curLine!=null)
+        while (curLine != null)
         {
-            productWeight[i+1] = Integer.parseInt(curLine);
+            productWeight[i + 1] = Integer.parseInt(curLine);
             i++;
             curLine = productFile.getNextLine();
         }

@@ -4,6 +4,7 @@
  *
  *   Created by Sally Goldin, 21 March 2012
  */
+
 import java.io.*;
 
 /**
@@ -27,7 +28,9 @@ public class TextFileReader
         try
         {
             if (reader != null)
+            {
                 reader.close();
+            }
         }
         catch (IOException io)
         {
