@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class DataReader extends TextFileReader {
-    private double[][] nodes;
-    private double[] demands;
-    private double[][] truckLoad;
-    private double[] productWeight;
+    public static double[][] nodes;
+    public static double[] demands;
+    public static double[][] truckLoad;
+    public static double[] productWeight;
     private TextFileReader nodeFile;
     private TextFileReader demandFile;
     private TextFileReader  productFile;
