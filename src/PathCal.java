@@ -1,18 +1,33 @@
 public class PathCal
 {
 
-    private static DataReader data;
+
+
+    private static double[][] nodes;
+    private static double[] demands;
+    private static double[][] truckLoad;
+    private static double[] productWeight;
 
     public PathCal()
     {
-
+        nodes = DataReader.getNodes();
+        demands = DataReader.getDemands();
+        truckLoad = DataReader.getTruckLoad();
+        productWeight = DataReader.getProductWeight();
     }
 
     private double calBetweenNodes(int startNode, int destination)
     {
+<<<<<<< HEAD
         double result;
         double node1[] = DataReader.nodes[startNode];
         double node2[] = DataReader.nodes[destination];
+=======
+        double result ;
+
+        double node1[] = nodes[startNode];
+        double node2[] = nodes[destination];
+>>>>>>> efe71d883b2fccec390c12ade8bd013dddcd6f48
 
 
         result = Math.sqrt((Math.pow(node2[0] - node1[0], 2) + Math.pow(node2[1] - node1[1], 2)));
@@ -22,9 +37,15 @@ public class PathCal
 
     public double distanceToOrigin(int destination)
     {
+<<<<<<< HEAD
         double node1[] = DataReader.nodes[destination];
         double result;
         result = Math.sqrt((Math.pow(node1[0] - 50, 2) + Math.pow(node1[1] - 50, 2)));
+=======
+        double node1[] = nodes[destination];
+        double result ;
+        result = Math.sqrt((Math.pow(node1[0]-50,2)+Math.pow(node1[1]-50,2)));
+>>>>>>> efe71d883b2fccec390c12ade8bd013dddcd6f48
 
 
         return result;
@@ -72,7 +93,11 @@ public class PathCal
 
                 i++;
             }
+<<<<<<< HEAD
             overallCost += overallDistance * DataReader.truckLoad[truckCount][1];
+=======
+            overallCost+= overallDistance*truckLoad[truckCount][1];
+>>>>>>> efe71d883b2fccec390c12ade8bd013dddcd6f48
             truckCount++;
         }
 
