@@ -1,15 +1,25 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Algorithm
 {
     public static void main(String[] args)
     {
 
         DataReader.initializeData();
+        Location.calGeneCollection(10);
+        int bestSol = 0;
 
-        //random gen0 arraylist of 60cell int array
-        //pick 10 random
+        ArrayList<int[]> generation = new ArrayList<int[]>();
+
+        //bestSol = Location.calBestSolution(Location.geneCollection);
+        //generation.add(Location.geneCollection.get(bestSol));
+
         while(true)
         {
-            //mutate  ->result = arraylist of 60int array
+            generation.add(Mutation.swapMutation(generation.get(0)));
+            generation.add(Mutation.insertMutation(generation.get(0)));
+            generation.add(Mutation.inversionMutation(generation.get(0)));
             if(true) //if best result is the same
             {
                 //countsame++;
