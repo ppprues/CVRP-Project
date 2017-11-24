@@ -1,14 +1,157 @@
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Location
 {
-    private int maxLocation = 15;
+    public static ArrayList<int[]> geneCollection = new ArrayList<>();
+    private static int[] solution = new int[60];
+
+    private static int[] getRandom()
+    {
+        int inputNode = 1;
+        int[] randomSol = new int[60];
+        Random random = new Random();
+
+        while(inputNode <= 15)
+        {
+            int inputAddress = random.nextInt(59);
+            if(randomSol[inputAddress] == 0)
+            {
+                randomSol[inputAddress] = inputNode;
+                inputNode++;
+            }
+        }
+
+        return randomSol;
+    }
+
+    public static void calGeneCollection(int numberGene)
+    {
+        for(int i = 0; i < numberGene; i++)
+        {
+            solution = getRandom();
+            geneCollection.add(solution);
+        }
+    }
+
+
+    public static void main(String[] args)
+    {
+        calGeneCollection(10);
+
+        for (int i = 0; i < geneCollection.size(); i++)
+        {
+            for(int j = 0; j < geneCollection.get(i).length; j++)
+            {
+                System.out.print(geneCollection.get(i)[j] + " ");
+            }
+            System.out.print("\n");
+        }
+    }
+
+    public static int calBestSolution(ArrayList<int[]> geneColl)
+    {
+        double cost = 0;
+        double minCost = 0;
+        int indexVal = 0;
+        for (int i=0;i<geneColl.size();i++)
+        {
+            if ( i == 0 )
+            {
+                cost = PathCal.calGeneCost(geneColl.get(i));
+                minCost = cost;
+                indexVal = i;
+            }
+            else
+            {
+                cost = PathCal.calGeneCost(geneColl.get(i));
+                if ( cost < minCost )
+                {
+                    minCost = cost;
+                    indexVal = i;
+                }
+            }
+
+        }
+        return indexVal;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*private int maxLocation = 15;
     private int maxTruck = 4;
+    private ArrayList<ArrayList<Integer>> geneCollection = new ArrayList<>();
 
 
-    public int[] getSetOfRoute ()
+
+
+    public int[] getRoute ()
+    {
+        //int[] routes = new int[60];
+        ArrayList<Integer> routes = new ArrayList<Integer>();
+        int bCheck = 0;
+        while (bCheck == 0)
+        {
+            routes = getSetOfRoute();
+            for (int i=0;i<60;i++)
+            {
+                if (routes[i] == )
+            }
+        }
+        geneCollection.equals(routes);
+
+    }
+
+
+    private int[] getSetOfRoute ()
     {
         int[] assignment = new int[60];
         Random random = new Random();
@@ -33,7 +176,7 @@ public class Location
                 while ( bCheck == 0 )
                 {
                     assignment[i] = random.nextInt(maxLocation);
-                    for (int j=0;j<maxLocation;j++)
+                    for (int j=0;j<60;j++)
                     {
                         if ((assignment[i] == assignment[j] ) && (assignment[i] != 0))
                         {
@@ -71,7 +214,7 @@ public class Location
                 while ( bCheck == 0 )
                 {
                     assignment[i] = random.nextInt(maxLocation);
-                    for (int j=maxLocation;j<maxLocation*2;j++)
+                    for (int j=maxLocation;j<60;j++)
                     {
                         if ((assignment[i] == assignment[j] ) && (assignment[i] != 0))
                         {
@@ -109,7 +252,7 @@ public class Location
                 while ( bCheck == 0 )
                 {
                     assignment[i] = random.nextInt(maxLocation);
-                    for (int j=maxLocation*2;j<maxLocation*3;j++)
+                    for (int j=maxLocation*2;j<60;j++)
                     {
                         if ((assignment[i] == assignment[j] ) && (assignment[i] != 0))
                         {
@@ -124,7 +267,7 @@ public class Location
                 bCheck = 0;
             }
 
-            for (int i=maxLocation*2;i<maxLocation*3;i++)
+            for (int i=maxLocation*2;i<60;i++)
             {
                 weightTruck3 = weightTruck3+demands[assignment[i]];
             }
@@ -148,7 +291,7 @@ public class Location
                 while ( bCheck == 0 )
                 {
                     assignment[i] = random.nextInt(maxLocation);
-                    for (int j=maxLocation*3;j<maxLocation*4;j++)
+                    for (int j=maxLocation*3;j<60;j++)
                     {
                         if ((assignment[i] == assignment[j] ) && (assignment[i] != 0))
                         {
@@ -178,5 +321,5 @@ public class Location
         return assignment;
 
 
-    }
+    }*/
 }
