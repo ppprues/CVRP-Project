@@ -30,7 +30,7 @@ public class PathCal
         return result;
     }
 
-    public static double calGeneDistance(int[] solution)
+    public static double calGeneCost(int[] solution)
     {
         double overallCost = 0;
         int cursor = 0;
