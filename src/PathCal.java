@@ -13,7 +13,7 @@ public class PathCal
         productWeight = DataReader.getProductWeight();
     }
 
-    private double calBetweenNodes(int startNode, int destination)
+    private static double calBetweenNodes(int startNode, int destination)
     {
         double result;
         double node1[] = nodes[startNode];
@@ -22,7 +22,7 @@ public class PathCal
         return result;
     }
 
-    public double distanceToOrigin(int destination)
+    public static double distanceToOrigin(int destination)
     {
         double node1[] = nodes[destination];
         double result;
@@ -30,7 +30,7 @@ public class PathCal
         return result;
     }
 
-    public double calGeneDistance(int[] solution)
+    public static double calGeneDistance(int[] solution)
     {
         double overallCost = 0;
         int cursor = 0;
