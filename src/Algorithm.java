@@ -6,7 +6,7 @@ public class Algorithm
         DataReader.initializeData();
 
         //random gen0 arraylist of 60cell int array
-        //pick best
+        //pick 10 random
         while(true)
         {
             //mutate  ->result = arraylist of 60int array
