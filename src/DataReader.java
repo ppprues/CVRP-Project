@@ -4,7 +4,7 @@ public class DataReader extends TextFileReader {
     private static double[][] nodes= new double[16][2];
     private static double[] demands= new double [16];
     private static double[][] truckLoad=  new double[4][2];
-    private static double[] productWeight= new double[4];
+    private static double[] productWeight= new double[5];
     private static TextFileReader nodeFile;
     private static TextFileReader demandFile;
     private static TextFileReader productFile;
@@ -92,7 +92,7 @@ public class DataReader extends TextFileReader {
         String curLine = productFile.getNextLine();
         while (curLine != null)
         {
-            productWeight[i + 1] = Integer.parseInt(curLine);
+            productWeight[i + 1] = Double.parseDouble(curLine);
             i++;
             curLine = productFile.getNextLine();
         }
