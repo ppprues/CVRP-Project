@@ -21,8 +21,8 @@ public class WeightConstraint {
                 }
                 i++;
             }
-
-            curTruckWeight++;
+            curTruckWeight=0;
+            truckCount++;
         }
         return true;
     }
