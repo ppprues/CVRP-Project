@@ -1,7 +1,7 @@
 public class PathCal
 {
     private static double[][] nodes;
-    private static double[] demands;
+    private static int[] demands;
     private static double[][] truckLoad;
     private static double[] productWeight;
 
