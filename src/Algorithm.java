@@ -4,7 +4,9 @@ public class Algorithm
     public static void main(String[] args)
     {
         reader = new DataReader();
-        reader.close();
+
+
+        DataReader.initializeData();
 
         System.out.println("Heeloo World");
     }

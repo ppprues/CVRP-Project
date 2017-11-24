@@ -56,8 +56,8 @@ public class DataReader extends TextFileReader {
         while (curLine != null)
         {
             String fields[] = curLine.split(",");
-            nodes[i + 1][0] = Integer.parseInt(fields[0]);
-            nodes[i + 1][1] = Integer.parseInt(fields[1]);
+            nodes[i + 1][0] = Double.parseDouble(fields[0]);
+            nodes[i + 1][1] = Double.parseDouble(fields[1]);
 
             curLine = nodeFile.getNextLine();
         }
