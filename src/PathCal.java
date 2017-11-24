@@ -1,8 +1,5 @@
 public class PathCal
 {
-
-
-
     private static double[][] nodes;
     private static double[] demands;
     private static double[][] truckLoad;
@@ -18,24 +15,18 @@ public class PathCal
 
     private double calBetweenNodes(int startNode, int destination)
     {
-        double result ;
-
+        double result;
         double node1[] = nodes[startNode];
         double node2[] = nodes[destination];
-
-
         result = Math.sqrt((Math.pow(node2[0] - node1[0], 2) + Math.pow(node2[1] - node1[1], 2)));
-
         return result;
     }
 
     public double distanceToOrigin(int destination)
     {
         double node1[] = nodes[destination];
-        double result ;
-        result = Math.sqrt((Math.pow(node1[0]-50,2)+Math.pow(node1[1]-50,2)));
-
-
+        double result;
+        result = Math.sqrt((Math.pow(node1[0] - 50, 2) + Math.pow(node1[1] - 50, 2)));
         return result;
     }
 
@@ -56,7 +47,6 @@ public class PathCal
             }
             truckCount++;
         }
-
         truckCount = 0;
         while (truckCount < 4)
         {
@@ -78,15 +68,11 @@ public class PathCal
                         overallDistance += distanceToOrigin(truckPath[truckCount][14]);
                     }
                 }
-
                 i++;
             }
-
-            overallCost+= overallDistance*truckLoad[truckCount][1];
+            overallCost += overallDistance * truckLoad[truckCount][1];
             truckCount++;
         }
-
-
         return overallCost;
     }
 }

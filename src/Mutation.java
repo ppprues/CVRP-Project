@@ -34,7 +34,6 @@ public class Mutation
         {
             r2 = random.nextInt(l);
         }
-
         //swap array elements at those indices
         int temp = array[r1];
         array[r1] = array[r2];
@@ -70,7 +69,6 @@ public class Mutation
             array[i + 1] = array[i];
             array[i] = temp2;
         }
-
         return array;
     }
 

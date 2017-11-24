@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
-public class DataReader extends TextFileReader {
+public class DataReader extends TextFileReader
+{
     private static double[][] nodes;
     private static double[] demands;
     private static double[][] truckLoad;
     private static double[] productWeight;
     private static TextFileReader nodeFile;
     private static TextFileReader demandFile;
-    private static TextFileReader  productFile;
+    private static TextFileReader productFile;
     private static TextFileReader truckFile;
     public static void initializeData()
     {
-
         nodeFile = new TextFileReader();
         nodeFile.open("node.txt");
 
@@ -28,7 +28,6 @@ public class DataReader extends TextFileReader {
         calDemands();
         calProductWeight();
         calTruckLoad();
-
     }
 
     public static double[][] getNodes()
@@ -50,7 +49,6 @@ public class DataReader extends TextFileReader {
 
     private static void calNodes()
     {
-
         String curLine = nodeFile.getNextLine();
         int i = 0;
         while (curLine != null)
@@ -61,8 +59,6 @@ public class DataReader extends TextFileReader {
 
             curLine = nodeFile.getNextLine();
         }
-
-
     }
 
     private static void calDemands()
@@ -89,7 +85,6 @@ public class DataReader extends TextFileReader {
             curLine = truckFile.getNextLine();
             i++;
         }
-
     }
 
     private static void calProductWeight()
@@ -102,9 +97,5 @@ public class DataReader extends TextFileReader {
             i++;
             curLine = productFile.getNextLine();
         }
-
     }
-
-
-
 }
