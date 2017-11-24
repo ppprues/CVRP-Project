@@ -8,7 +8,7 @@ public class Location
     private int maxTruck = 4;
 
 
-    public Array<int> getSetOfRoute ()
+    public int[] getSetOfRoute ()
     {
         int[] assignment = new int[60];
         Random random = new Random();
@@ -175,9 +175,7 @@ public class Location
         overload = 1;
 
 
-
-
-
+        return assignment;
 
 
     }
