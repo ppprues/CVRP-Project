@@ -39,10 +39,12 @@ public class Gene
         int indexVal = 0;
 
         cost = PathCal.calGeneCost(geneColl.get(0));
+        System.out.println("Total cost0 "+cost);
         minCost = cost;
         for (int i = 1; i < geneColl.size(); i++)
         {
             cost = PathCal.calGeneCost(geneColl.get(i));
+            System.out.println("Total cost"+i+" "+cost);
             if (cost < minCost)
             {
                 minCost = cost;
@@ -54,6 +56,7 @@ public class Gene
 
     public static void main(String[] args)
     {
+        PathCal.initializeCalculator();
         calGeneCollection(10);
         for (int i = 0; i < geneCollection.size(); i++)
         {
