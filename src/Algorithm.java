@@ -8,33 +8,39 @@ public class Algorithm
 
         DataReader.initializeData();
         Location.calGeneCollection(10);
-        int bestSol = 0;
+        int[] parent = Location.geneCollection.get(Location.calBestSolution(Location.geneCollection));
+        int[] bestGene;
+        ArrayList<int[]> bestGeneCollection = new ArrayList<>();
+        int same = 0;
 
-        ArrayList<int[]> generation = new ArrayList<int[]>();
-
-        //bestSol = Location.calBestSolution(Location.geneCollection);
-        //generation.add(Location.geneCollection.get(bestSol));
+        bestGene = parent;
 
         while(true)
         {
-            generation.add(Mutation.swapMutation(generation.get(0)));
-            generation.add(Mutation.insertMutation(generation.get(0)));
-            generation.add(Mutation.inversionMutation(generation.get(0)));
-            if(true) //if best result is the same
+            bestGeneCollection.add(parent);
+            for (int j=1;j<3;j++)
             {
-                //countsame++;
-                if(true)//count same>10
+                bestGeneCollection.add(Mutation.swapMutation(parent));
+                bestGeneCollection.add(Mutation.insertMutation(parent));
+                bestGeneCollection.add(Mutation.inversionMutation(parent));
+            }
+
+            parent = bestGeneCollection.get(Location.calBestSolution(bestGeneCollection));
+            bestGeneCollection.clear();
+
+            if(PathCal.calGeneCost(bestGene) == PathCal.calGeneCost(parent)) //if best result is the same
+            {
+                same++;
+                if(same > 10)//count same>10
                 {
                     break;
-                    //break
-                    //best result is optimal
                 }
             }
+            else if (PathCal.calGeneCost(bestGene) < PathCal.calGeneCost(parent))
+            {
+                bestGene = parent;
+            }
         }
-        //pick1
-
-        //mutate
-
         System.out.println("Heeloo World");
     }
 }
