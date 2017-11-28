@@ -38,14 +38,70 @@ public class PathCal
 
     public static double calGeneCost(int[] solution)
     {
-        double distance = 0;
-        double overallCost = 0;
+        double distance = 0.0;
+        double overallDistance = 0.0;
+        double overallCost = 0.0;
+        int nodeCount = 0;
+        int previousNode = 0;
         int cursor = 0;
-        int i = 0;
         int[][] truckPath = new int[4][15]; //path of trucks
         int truckCount = 0;
 
-        while (cursor < 60)    //seperate gene to each truck
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                truckPath[i][j] = solution[cursor];
+                cursor++;
+            }
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                System.out.print(truckPath[i][j] + "\t");
+            }
+            System.out.print("\n");
+        }
+
+        while (truckCount < 4)
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                if (truckPath[truckCount][j] != 0) // Node exists
+                {
+                    if (nodeCount == 0) // The first node
+                    {
+                        distance += distanceToOrigin(truckPath[truckCount][j]);
+                    }
+                    else
+                    {
+                        distance += calBetweenNodes(previousNode, truckPath[truckCount][j]);
+                    }
+                    System.out.print(truckPath[truckCount][j] + " -> ");
+                    previousNode = truckPath[truckCount][j];
+                    nodeCount++;
+                }
+            }
+            distance += distanceToOrigin(previousNode);
+            overallDistance += distance;
+            System.out.print("Truck " + truckCount + " Distance = " + distance + " Total distance = " + overallDistance +"\n");
+
+            overallCost += distance * truckLoad[truckCount][1];
+            distance = 0;
+            previousNode = 0;
+            nodeCount = 0;
+            truckCount++;
+        }
+
+        System.out.println("Overall Distance = " + overallDistance);
+        System.out.println("Overall Cost = " + overallCost);
+
+        return  overallCost;
+
+
+        /*while (cursor < 60)
         {
             int j = 0;
             while (j < 15)
@@ -53,7 +109,6 @@ public class PathCal
                 if (solution[cursor] != 0)
                 {
                     truckPath[truckCount][i] = solution[cursor];
-
                     i++;
                 }
                 cursor++;
@@ -112,7 +167,6 @@ public class PathCal
 
         }
 
-        System.out.println("\ntotaldistance " + distance);
-        return overallCost;
+        System.out.println("\ntotaldistance " + distance);*/
     }
 }

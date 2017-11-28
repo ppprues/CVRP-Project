@@ -22,7 +22,7 @@ public class Algorithm
                 bestGeneCollection.add(Mutation.insertMutation(parent));
                 bestGeneCollection.add(Mutation.inversionMutation(parent));
             }
-            
+
             bestGene = bestGeneCollection.get(Gene.calBestSolution(bestGeneCollection));
             bestGeneCollection.clear();
 
