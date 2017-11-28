@@ -38,13 +38,11 @@ public class Gene
         double minCost = 0;
         int indexVal = 0;
 
-        cost = PathCal.calGeneCost(geneColl.get(0));
-        System.out.println("Total cost0 "+cost);
         minCost = cost;
-        for (int i = 1; i < geneColl.size(); i++)
+        for (int i = 0; i < geneColl.size(); i++)
         {
             cost = PathCal.calGeneCost(geneColl.get(i));
-            System.out.println("Total cost"+i+" "+cost);
+            System.out.print("\n");
             if (cost < minCost)
             {
                 minCost = cost;
@@ -58,14 +56,18 @@ public class Gene
     {
         PathCal.initializeCalculator();
         calGeneCollection(10);
-        for (int i = 0; i < geneCollection.size(); i++)
+        /*for (int i = 0; i < geneCollection.size(); i++)
         {
             for (int j = 0; j < geneCollection.get(i).length; j++)
             {
                 System.out.print(geneCollection.get(i)[j] + " ");
             }
             System.out.print("\n");
-        }
+        }*/
+
+        geneCollection.clear();
+        int[] solution1 = {15,13,6,2,14,1,0,0,0,0,0,0,0,0,0,5,7,12,0,0,0,0,0,0,0,0,0,0,0,0,8,4,3,0,0,0,0,0,0,0,0,0,0,0,0,10,11,9,0,0,0,0,0,0,0,0,0,0,0,0};
+        geneCollection.add(solution1);
         System.out.println(calBestSolution(geneCollection));
     }
 }
