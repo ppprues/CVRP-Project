@@ -1,16 +1,16 @@
 public class PathCal
 {
-    private static double[][] nodes;
     private static int[] demands;
-    private static double[][] truckLoad;
+    private static double[][] nodes;
     private static double[] productWeight;
+    private static double[][] truckLoad;
 
     public PathCal()
     {
-        nodes = DataReader.getNodes();
         demands = DataReader.getDemands();
-        truckLoad = DataReader.getTruckLoad();
+        nodes = DataReader.getNodes();
         productWeight = DataReader.getProductWeight();
+        truckLoad = DataReader.getTruckLoad();
     }
 
     private static double calBetweenNodes(int startNode, int destination)
@@ -37,6 +37,7 @@ public class PathCal
         int i = 0;
         int[][] truckPath = new int[4][15]; //path of trucks
         int truckCount = 0;
+
         while (cursor < 60)    //seperate gene to each truck
         {
             while (i < 15)
@@ -48,6 +49,7 @@ public class PathCal
             truckCount++;
         }
         truckCount = 0;
+        i = 0;
         while (truckCount < 4)
         {
             double overallDistance = 0;

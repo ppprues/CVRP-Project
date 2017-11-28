@@ -5,10 +5,10 @@ public class Algorithm
 {
     public static void main(String[] args)
     {
+        int bestSolution = 0;
 
         DataReader.initializeData();
-        Location.calGeneCollection(10);
-        int bestSol = 0;
+        Gene.calGeneCollection(10);
 
         ArrayList<int[]> generation = new ArrayList<int[]>();
 
