@@ -44,7 +44,7 @@ public class DataReader extends TextFileReader
             String fields[] = curLine.split(",");
             nodes[i + 1][0] = Double.parseDouble(fields[0]);
             nodes[i + 1][1] = Double.parseDouble(fields[1]);
-
+            i++;
             curLine = nodeFile.getNextLine();
         }
     }

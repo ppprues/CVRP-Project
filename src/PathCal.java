@@ -67,6 +67,7 @@ public class PathCal
 
         while (truckCount < 4)
         {
+            System.out.print("Truck " + (truckCount + 1) + " ");
             for (int j = 0; j < 15; j++)
             {
                 if (truckPath[truckCount][j] != 0) // Node exists
@@ -79,14 +80,14 @@ public class PathCal
                     {
                         distance += calBetweenNodes(previousNode, truckPath[truckCount][j]);
                     }
-                    System.out.print(truckPath[truckCount][j] + " -> ");
+                    System.out.print("(" + nodes[truckPath[truckCount][j]][0] + "," + nodes[truckPath[truckCount][j]][1] + ") -> ");
                     previousNode = truckPath[truckCount][j];
                     nodeCount++;
                 }
             }
             distance += distanceToOrigin(previousNode);
             overallDistance += distance;
-            System.out.print("Truck " + truckCount + " Distance = " + distance + " Total distance = " + overallDistance +"\n");
+            System.out.print("Truck " + truckCount + " Distance = " + distance + " Total distance = " + overallDistance + "\n");
 
             overallCost += distance * truckLoad[truckCount][1];
             distance = 0;
@@ -98,75 +99,6 @@ public class PathCal
         System.out.println("Overall Distance = " + overallDistance);
         System.out.println("Overall Cost = " + overallCost);
 
-        return  overallCost;
-
-
-        /*while (cursor < 60)
-        {
-            int j = 0;
-            while (j < 15)
-            {
-                if (solution[cursor] != 0)
-                {
-                    truckPath[truckCount][i] = solution[cursor];
-                    i++;
-                }
-                cursor++;
-                j++;
-            }
-            i = 0;
-            truckCount++;
-        }
-
-        truckCount = 0;
-        i = 0;
-        while (truckCount < 4)
-        {
-            System.out.print("truck" + truckCount + " ");
-            while (truckPath[truckCount][i] != 0)
-            {
-                System.out.print(truckPath[truckCount][i] + " ");
-                i++;
-            }
-            truckCount++;
-            i = 0;
-        }
-
-        truckCount = 0;
-        i = 0;
-        while (truckCount < 4)
-        {
-            double overallDistance = 0;     //of each car
-            while (truckPath[truckCount][i] != 0)    //calculate distance of each truck and calculate cost to overall cost
-            {
-                if (i == 0)
-                {
-
-                    overallDistance += distanceToOrigin(truckPath[truckCount][0]);
-                    distance += distanceToOrigin(truckPath[truckCount][0]);
-
-                }
-                else
-                {
-                    if (truckPath[truckCount][i + 1] != 0)
-                    {
-                        overallDistance += calBetweenNodes(truckPath[truckCount][i], truckPath[truckCount][i + 1]);
-                        distance += calBetweenNodes(truckPath[truckCount][i], truckPath[truckCount][i + 1]);
-                    }
-                    else
-                    {
-                        overallDistance += distanceToOrigin(truckPath[truckCount][i]);
-                        distance += distanceToOrigin(truckPath[truckCount][0]);
-                    }
-                }
-                i++;
-            }
-
-            overallCost += overallDistance * truckLoad[truckCount][1];
-            truckCount++;
-
-        }
-
-        System.out.println("\ntotaldistance " + distance);*/
+        return overallCost;
     }
 }

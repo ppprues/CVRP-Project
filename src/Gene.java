@@ -65,9 +65,6 @@ public class Gene
             System.out.print("\n");
         }*/
 
-        geneCollection.clear();
-        int[] solution1 = {15,13,6,2,14,1,0,0,0,0,0,0,0,0,0,5,7,12,0,0,0,0,0,0,0,0,0,0,0,0,8,4,3,0,0,0,0,0,0,0,0,0,0,0,0,10,11,9,0,0,0,0,0,0,0,0,0,0,0,0};
-        geneCollection.add(solution1);
         System.out.println(calBestSolution(geneCollection));
     }
 }
