@@ -5,13 +5,18 @@ public class Algorithm
 {
     public static void main(String[] args)
     {
+        int bestSolution = 0;
 
         DataReader.initializeData();
+<<<<<<< HEAD
         Location.calGeneCollection(10);
         int[] parent = Location.geneCollection.get(Location.calBestSolution(Location.geneCollection));
         int[] bestGene;
         ArrayList<int[]> bestGeneCollection = new ArrayList<>();
         int same = 0;
+=======
+        Gene.calGeneCollection(10);
+>>>>>>> 78a22fb1adae9feb7e762e1b6ed457c6bafe9454
 
         bestGene = parent;
 

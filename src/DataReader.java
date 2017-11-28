@@ -1,49 +1,38 @@
-import java.util.ArrayList;
+public class DataReader extends TextFileReader
+{
+    private static int[] demands = new int[16];
+    private static double[][] nodes = new double[16][2];
+    private static double[] productWeight = new double[5];
+    private static double[][] truckLoad = new double[4][2];
 
-public class DataReader extends TextFileReader {
-    private static double[][] nodes= new double[16][2];
-    private static int[] demands= new int [16];
-    private static double[][] truckLoad=  new double[4][2];
-    private static double[] productWeight= new double[5];
-    private static TextFileReader nodeFile;
-    private static TextFileReader demandFile;
-    private static TextFileReader productFile;
-    private static TextFileReader truckFile;
+    private static TextFileReader demandFile = new TextFileReader();
+    private static TextFileReader nodeFile = new TextFileReader();
+    private static TextFileReader productFile = new TextFileReader();
+    private static TextFileReader truckFile = new TextFileReader();
+
     public static void initializeData()
     {
-        nodeFile = new TextFileReader();
-        nodeFile.open("node.txt");
-
-        demandFile = new TextFileReader();
         demandFile.open("demand.txt");
-
-        productFile = new TextFileReader();
+        nodeFile.open("node.txt");
         productFile.open("product.txt");
-
-        truckFile = new TextFileReader();
         truckFile.open("truck.txt");
 
-        calNodes();
         calDemands();
+        calNodes();
         calProductWeight();
         calTruckLoad();
     }
 
-    public static double[][] getNodes()
+    private static void calDemands()
     {
-        return nodes;
-    }
-    public static int[] getDemands()
-    {
-        return demands;
-    }
-    public static double[][] getTruckLoad()
-    {
-        return truckLoad;
-    }
-    public static double[] getProductWeight()
-    {
-        return productWeight;
+        int i = 0;
+        String curLine = demandFile.getNextLine();
+        while (curLine != null)
+        {
+            demands[i + 1] = Integer.parseInt(curLine);
+            i++;
+            curLine = demandFile.getNextLine();
+        }
     }
 
     private static void calNodes()
@@ -60,15 +49,15 @@ public class DataReader extends TextFileReader {
         }
     }
 
-    private static void calDemands()
+    private static void calProductWeight()
     {
         int i = 0;
-        String curLine = demandFile.getNextLine();
+        String curLine = productFile.getNextLine();
         while (curLine != null)
         {
-            demands[i + 1] = Integer.parseInt(curLine);
+            productWeight[i + 1] = Double.parseDouble(curLine);
             i++;
-            curLine = demandFile.getNextLine();
+            curLine = productFile.getNextLine();
         }
     }
 
@@ -86,15 +75,23 @@ public class DataReader extends TextFileReader {
         }
     }
 
-    private static void calProductWeight()
+    public static int[] getDemands()
     {
-        int i = 0;
-        String curLine = productFile.getNextLine();
-        while (curLine != null)
-        {
-            productWeight[i + 1] = Double.parseDouble(curLine);
-            i++;
-            curLine = productFile.getNextLine();
-        }
+        return demands;
+    }
+
+    public static double[][] getNodes()
+    {
+        return nodes;
+    }
+
+    public static double[] getProductWeight()
+    {
+        return productWeight;
+    }
+
+    public static double[][] getTruckLoad()
+    {
+        return truckLoad;
     }
 }
