@@ -5,8 +5,6 @@ public class Algorithm
 {
     public static void main(String[] args)
     {
-        int bestSolution = 0;
-
         DataReader.initializeData();
         Gene.calGeneCollection(10);
         int[] parent = Gene.geneCollection.get(Gene.calBestSolution(Gene.geneCollection));
@@ -14,7 +12,6 @@ public class Algorithm
         ArrayList<int[]> bestGeneCollection = new ArrayList<>();
         int same = 0;
 
-        bestGene = parent;
 
         while(true)
         {
@@ -25,23 +22,23 @@ public class Algorithm
                 bestGeneCollection.add(Mutation.insertMutation(parent));
                 bestGeneCollection.add(Mutation.inversionMutation(parent));
             }
-
-            parent = bestGeneCollection.get(Gene.calBestSolution(bestGeneCollection));
+            
+            bestGene = bestGeneCollection.get(Gene.calBestSolution(bestGeneCollection));
             bestGeneCollection.clear();
 
             if(PathCal.calGeneCost(bestGene) == PathCal.calGeneCost(parent)) //if best result is the same
             {
                 same++;
-                if(same > 10)//count same>10
+                if(same > 10)
                 {
                     break;
                 }
             }
-            else if (PathCal.calGeneCost(bestGene) < PathCal.calGeneCost(parent))
+            else if (PathCal.calGeneCost(parent) < PathCal.calGeneCost(bestGene))
             {
-                bestGene = parent;
+                parent = bestGene;
             }
         }
-        System.out.println("Heeloo World");
+        System.out.println("Hello World");
     }
 }
