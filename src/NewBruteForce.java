@@ -1,8 +1,18 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+
 public class NewBruteForce extends TextFileReader
 {
     public static int lineNumber=0;
     public static int[] curRoute = new int[40];
     private  static TextFileReader possibilities = new TextFileReader();
+    private static final String FILENAME = "bruteforceanswer.txt";
+
+
     public static void readFile()
     {
         possibilities.open("solution.txt");
