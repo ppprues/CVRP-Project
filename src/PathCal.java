@@ -80,15 +80,12 @@ public class PathCal
                     {
                         distance += calBetweenNodes(previousNode, truckPath[truckCount][j]);
                     }
-                    //System.out.print("(" + nodes[truckPath[truckCount][j]][0] + "," + nodes[truckPath[truckCount][j]][1] + ") -> ");
                     previousNode = truckPath[truckCount][j];
                     nodeCount++;
                 }
             }
             distance += distanceToOrigin(previousNode);
             overallDistance += distance;
-            //System.out.println("Truck " + truckCount + " Distance = " + distance + " Total distance = " + overallDistance + "\n");
-            //System.out.println("cost: "+ distance*truckLoad[truckCount][1]);
             overallCost += distance * truckLoad[truckCount][1];
 
             distance = 0;

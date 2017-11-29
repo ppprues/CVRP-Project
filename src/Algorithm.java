@@ -57,6 +57,13 @@ public class Algorithm
             i++;
         }
         System.out.println("Best cost: "+PathCal.calGeneCost(parent));
+
+
+
+        Graph.initialize();
+        Graph.plotGene(bestGene);
+
+
         //System.out.println("same : "+same);
     }
 }
