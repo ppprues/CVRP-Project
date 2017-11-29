@@ -1,7 +1,7 @@
 public class DataReader extends TextFileReader
 {
-    private static int[] demands = new int[16];
-    private static double[][] nodes = new double[16][2];
+    private static int[] demands = new int[11];
+    private static double[][] nodes = new double[11][2];
     private static double[] productWeight = new double[5];
     private static double[][] truckLoad = new double[4][2];
 
