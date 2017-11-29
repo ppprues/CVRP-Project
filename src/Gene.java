@@ -9,17 +9,26 @@ public class Gene
     private static int[] getRandom()
     {
         int inputNode = 1;
-        int[] randomSol = new int[60];
+        int[] randomSol = new int[40];
+        int[] sumWeight = new int[4];
         Random random = new Random();
-        while (inputNode <= 15)
+        boolean overLoad = true;
+        while (overLoad == true)
         {
-            int inputAddress = random.nextInt(59);
-            if (randomSol[inputAddress] == 0)
+            while (inputNode <= 10)
             {
-                randomSol[inputAddress] = inputNode;
-                inputNode++;
+
+                int inputAddress = random.nextInt(39);
+                if (randomSol[inputAddress] == 0)
+                {
+                    randomSol[inputAddress] = inputNode;
+                    inputNode++;
+                }
             }
+            overLoad = checkOverLoad(randomSol);
         }
+
+
         return randomSol;
     }
 
@@ -75,5 +84,28 @@ public class Gene
         }*/
 
         System.out.println(calBestSolution(geneCollection));
+    }
+
+    public static boolean checkOverLoad(int[] gene)
+    {
+        boolean overLoad = false;
+        int[] sumWeight = new int[4];
+        for (int i=0;i<4;i++)
+        {
+            for (int j=0;j<10*i;j++)
+            {
+                sumWeight[i] = sumWeight[i]+DataReader.getDemands()[gene[j]];
+            }
+            if (sumWeight[i] > DataReader.getTruckLoad()[i][0])
+            {
+                overLoad = true;
+                break;
+            }
+            else
+            {
+                overLoad = false;
+            }
+        }
+        return overLoad;
     }
 }

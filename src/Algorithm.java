@@ -1,3 +1,4 @@
+import java.awt.image.AreaAveragingScaleFilter;
 import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -7,47 +8,67 @@ public class Algorithm
     public static void main(String[] args)
     {
         PathCal.initializeCalculator();
-        Gene.calGeneCollection(10000);
-        int[] parent = Gene.geneCollection.get(Gene.calBestSolution(Gene.geneCollection));
+        Gene.calGeneCollection(4000);
+        int[] theBest;
         int[] bestGene;
+        int[][] parent = new int[200][40];
         ArrayList<int[]> bestGeneCollection = new ArrayList<>();
         int same = 0;
         int i =1;
 
-        //System.out.println("+++ FIRST +++: "+PathCal.calGeneCost(parent));
+        for (int j=0;j<200;j++)
+        {
+            parent[j] = Gene.geneCollection.get(Gene.calBestSolution(Gene.geneCollection));
+            Gene.geneCollection.remove(Gene.calBestSolution(Gene.geneCollection));
+        }
+
+        theBest = parent[0];
 
         while(true)
         {
-            System.out.println("Round : "+i);
-            bestGeneCollection.add(parent);
-            for (int j=0;j<3;j++)
+            for(int j=0;j<200;j++)
             {
-                bestGeneCollection.add(Mutation.swapMutation(parent));
-                bestGeneCollection.add(Mutation.insertMutation(parent));
-                bestGeneCollection.add(Mutation.inversionMutation(parent));
+                bestGeneCollection.add(parent[j]);
             }
 
-            bestGene = bestGeneCollection.get(Gene.calBestSolution(bestGeneCollection));
+            System.out.println("Round : "+i);
+            for(int j=0;j<200;j++)
+            {
+                for (int k=0;k<3;k++)
+                {
+                    bestGeneCollection.add(Mutation.swapMutation(bestGeneCollection.get(j)));
+                    bestGeneCollection.add(Mutation.insertMutation(bestGeneCollection.get(j)));
+                    bestGeneCollection.add(Mutation.inversionMutation(bestGeneCollection.get(j)));
+                }
+            }
+
+            for(int j=0;j<200;j++)
+            {
+                parent[j] = bestGeneCollection.get(Gene.calBestSolution(bestGeneCollection));
+                bestGeneCollection.remove(Gene.calBestSolution(bestGeneCollection));
+            }
+
+            bestGene = parent[0];
             bestGeneCollection.clear();
 
             //System.out.println("== CHECK ==");
             //System.out.println("==PARENT==: "+PathCal.calGeneCost(parent));
             //System.out.println("==BESTGENE==: "+PathCal.calGeneCost(bestGene));
 
-            if(bestGene == parent) //if best result is the same
+            if(bestGene == theBest) //if best result is the same
             {
                 same++;
-                if(same > 10)
+                if(same > 20)
                 {
                     break;
                 }
             }
-            else if (PathCal.calGeneCost(parent) > PathCal.calGeneCost(bestGene))
+            else if (PathCal.calGeneCost(theBest) > PathCal.calGeneCost(bestGene))
             {
                 same = 0;
-                parent = bestGene;
+                theBest = bestGene;
                 System.out.println("== BETTER ==");
-                System.out.println("== PARENT ==: "+PathCal.calGeneCost(parent));
+                System.out.println("== THE BEST ==: "+PathCal.calGeneCost(theBest));
                 System.out.println("== BEST GENE ==: "+PathCal.calGeneCost(bestGene));
             }
             else
@@ -56,6 +77,7 @@ public class Algorithm
             }
             i++;
         }
+<<<<<<< HEAD
         System.out.println("Best cost: "+PathCal.calGeneCost(parent));
 
 
@@ -64,6 +86,9 @@ public class Algorithm
         Graph.plotGene(bestGene);
 
 
+=======
+        System.out.println("Best cost: "+PathCal.calGeneCost(theBest));
+>>>>>>> 583864aeb19784325b3fbd3f6e3c40b08f64f8c1
         //System.out.println("same : "+same);
     }
 }
