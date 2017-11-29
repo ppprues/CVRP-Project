@@ -44,12 +44,12 @@ public class PathCal
         int nodeCount = 0;
         int previousNode = 0;
         int cursor = 0;
-        int[][] truckPath = new int[4][15]; //path of trucks
+        int[][] truckPath = new int[4][10]; //path of trucks
         int truckCount = 0;
 
         for (int i = 0; i < 4; i++)
         {
-            for (int j = 0; j < 15; j++)
+            for (int j = 0; j < 10; j++)
             {
                 truckPath[i][j] = solution[cursor];
                 cursor++;
@@ -68,7 +68,7 @@ public class PathCal
         while (truckCount < 4)
         {
             //System.out.print("Truck " + (truckCount + 1) + " ");
-            for (int j = 0; j < 15; j++)
+            for (int j = 0; j < 10; j++)
             {
                 if (truckPath[truckCount][j] != 0) // Node exists
                 {
