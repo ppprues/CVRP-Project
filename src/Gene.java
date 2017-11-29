@@ -12,8 +12,12 @@ public class Gene
         int[] randomSol = new int[40];
         int[] sumWeight = new int[4];
         Random random = new Random();
+<<<<<<< HEAD
         boolean overLoad = true;
         while (overLoad == true)
+=======
+        while (inputNode <= 10)
+>>>>>>> ade529305a5319501e4733b93ace721c27b5de00
         {
             inputNode = 1;
             while (inputNode <= 10)
