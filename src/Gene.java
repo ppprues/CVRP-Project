@@ -51,4 +51,20 @@ public class Gene
         }
         return indexVal;
     }
+
+    public static void main(String[] args)
+    {
+        PathCal.initializeCalculator();
+        calGeneCollection(10);
+        /*for (int i = 0; i < geneCollection.size(); i++)
+        {
+            for (int j = 0; j < geneCollection.get(i).length; j++)
+            {
+                System.out.print(geneCollection.get(i)[j] + " ");
+            }
+            System.out.print("\n");
+        }*/
+
+        System.out.println(calBestSolution(geneCollection));
+    }
 }
