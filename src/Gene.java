@@ -51,23 +51,4 @@ public class Gene
         }
         return indexVal;
     }
-
-    public static void main(String[] args)
-    {
-        PathCal.initializeCalculator();
-        calGeneCollection(10);
-        /*for (int i = 0; i < geneCollection.size(); i++)
-        {
-            for (int j = 0; j < geneCollection.get(i).length; j++)
-            {
-                System.out.print(geneCollection.get(i)[j] + " ");
-            }
-            System.out.print("\n");
-        }*/
-
-        geneCollection.clear();
-        int[] solution1 = {15,13,6,2,14,1,0,0,0,0,0,0,0,0,0,5,7,12,0,0,0,0,0,0,0,0,0,0,0,0,8,4,3,0,0,0,0,0,0,0,0,0,0,0,0,10,11,9,0,0,0,0,0,0,0,0,0,0,0,0};
-        geneCollection.add(solution1);
-        System.out.println(calBestSolution(geneCollection));
-    }
 }

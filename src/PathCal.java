@@ -56,14 +56,14 @@ public class PathCal
             }
         }
 
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 15; j++)
-            {
-                System.out.print(truckPath[i][j] + "\t");
-            }
-            System.out.print("\n");
-        }
+        //for (int i = 0; i < 4; i++)
+        //{
+            //for (int j = 0; j < 15; j++)
+            //{
+            //    System.out.print(truckPath[i][j] + "\t");
+            //}
+           // System.out.print("\n");
+        //}
 
         while (truckCount < 4)
         {
@@ -79,7 +79,7 @@ public class PathCal
                     {
                         distance += calBetweenNodes(previousNode, truckPath[truckCount][j]);
                     }
-                    System.out.print(truckPath[truckCount][j] + " -> ");
+                    //System.out.print(truckPath[truckCount][j] + " -> ");
                     previousNode = truckPath[truckCount][j];
                     nodeCount++;
                 }
