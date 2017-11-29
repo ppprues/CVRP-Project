@@ -56,18 +56,18 @@ public class PathCal
             }
         }
 
-        for (int i = 0; i < 4; i++)
+        /*for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 15; j++)
             {
                 System.out.print(truckPath[i][j] + "\t");
             }
             System.out.print("\n");
-        }
+        }*/
 
         while (truckCount < 4)
         {
-            System.out.print("Truck " + (truckCount + 1) + " ");
+            //System.out.print("Truck " + (truckCount + 1) + " ");
             for (int j = 0; j < 15; j++)
             {
                 if (truckPath[truckCount][j] != 0) // Node exists
@@ -80,16 +80,17 @@ public class PathCal
                     {
                         distance += calBetweenNodes(previousNode, truckPath[truckCount][j]);
                     }
-                    System.out.print("(" + nodes[truckPath[truckCount][j]][0] + "," + nodes[truckPath[truckCount][j]][1] + ") -> ");
+                    //System.out.print("(" + nodes[truckPath[truckCount][j]][0] + "," + nodes[truckPath[truckCount][j]][1] + ") -> ");
                     previousNode = truckPath[truckCount][j];
                     nodeCount++;
                 }
             }
             distance += distanceToOrigin(previousNode);
             overallDistance += distance;
-            System.out.print("Truck " + truckCount + " Distance = " + distance + " Total distance = " + overallDistance + "\n");
-
+            //System.out.println("Truck " + truckCount + " Distance = " + distance + " Total distance = " + overallDistance + "\n");
+            //System.out.println("cost: "+ distance*truckLoad[truckCount][1]);
             overallCost += distance * truckLoad[truckCount][1];
+
             distance = 0;
             previousNode = 0;
             nodeCount = 0;

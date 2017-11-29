@@ -38,17 +38,27 @@ public class Gene
         double minCost = 0;
         int indexVal = 0;
 
-        minCost = cost;
+
         for (int i = 0; i < geneColl.size(); i++)
         {
-            cost = PathCal.calGeneCost(geneColl.get(i));
-            System.out.print("\n");
-            if (cost < minCost)
+            if (i == 0)
             {
+                cost = PathCal.calGeneCost(geneColl.get(i));
                 minCost = cost;
-                indexVal = i;
             }
+            else
+            {
+                cost = PathCal.calGeneCost(geneColl.get(i));
+                System.out.print("\n");
+                if (cost < minCost)
+                {
+                    minCost = cost;
+                    indexVal = i;
+                }
+            }
+
         }
+        //System.out.println("FIRSTT = "+PathCal.calGeneCost(geneCollection.get(indexVal)));
         return indexVal;
     }
 
