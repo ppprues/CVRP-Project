@@ -11,7 +11,7 @@ public class Gene
         int inputNode = 1;
         int[] randomSol = new int[60];
         Random random = new Random();
-        while (inputNode <= 15)
+        while (inputNode <= 10)
         {
             int inputAddress = random.nextInt(59);
             if (randomSol[inputAddress] == 0)
