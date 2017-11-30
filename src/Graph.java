@@ -19,16 +19,17 @@ public class Graph
         int nodeCount = 0;
         int previousNode = 0;
         int cursor = 0;
-        int[][] truckPath = new int[4][15]; //path of trucks
+        int[][] truckPath = new int[4][10]; //path of trucks
         Color colors[] = {Color.RED, Color.GREEN, Color.BLUE, Color.MAGENTA, Color.ORANGE};
 
         Graphics2D graphics = viewer.getViewerGraphics();
+        graphics.setPaint(Color.BLACK);
+        graphics.drawString("(50,50)", 250, 250);
         graphics.setPaint(colors[0]);
-        graphics.drawString("", 250, 250);
 
         for (int i = 0; i < 4; i++)
         {
-            for (int j = 0; j < 15; j++)
+            for (int j = 0; j < 10; j++)
             {
                 truckPath[i][j] = gene[cursor];
                 cursor++;
@@ -38,7 +39,7 @@ public class Graph
         while (truckCount < 4)
         {
             graphics.setPaint(colors[truckCount + 1]);
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (truckPath[truckCount][i] != 0) // Node exists
                 {
@@ -50,6 +51,7 @@ public class Graph
                     {
                         graphics.drawLine((int) nodes[previousNode][0] * 5, (int) nodes[previousNode][1] * 5, (int) nodes[truckPath[truckCount][i]][0] * 5, (int) nodes[truckPath[truckCount][i]][1] * 5);
                     }
+                    graphics.drawString("(" +(int)nodes[truckPath[truckCount][i]][0]+ ","+(int)nodes[truckPath[truckCount][i]][1]+")", (int) nodes[truckPath[truckCount][i]][0] * 5, (int) nodes[truckPath[truckCount][i]][1] * 5);
                     previousNode = truckPath[truckCount][i];
                     nodeCount++;
                 }
