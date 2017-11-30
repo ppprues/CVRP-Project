@@ -1,51 +1,177 @@
-import java.util.Random;
-import java.util.Scanner;
+/**
+ *  BruteForce
+ *
+ *  Simple class of BruteForce.
+ *
+ *  4 November 2017
+ */
 
-public class BruteForce
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class BruteForce extends TextFileReader
 {
-    static void permute(int[] a, int k)
+    private static int lineNumber = 0;
+    private static int[] curRoute = new int[40];
+    private static TextFileReader possibilities = new TextFileReader();
+    private static final String FILENAME = "bruteforceanswer.txt";
+
+    public static void readFile()
     {
-        if (k == a.length)
-        {
-            for (int i = 0; i < a.length; i++)
-            {
-                System.out.print(" [" + a[i] + "] ");
-            }
-            System.out.println();
-        }
-        else
-        {
-            for (int i = k; i < a.length; i++)
-            {
-                int temp = a[k];
-                a[k] = a[i];
-                a[i] = temp;
-                permute(a, k + 1);
-                temp = a[k];
-                a[k] = a[i];
-                a[i] = temp;
-            }
-        }
+        possibilities.open("solution.txt");
     }
 
-    public static void main(String args[])
+    /**
+     * Read each line
+     * @return false if end of the file
+     */
+    public static boolean readLine()
     {
-        Random random = new Random();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the length of list: ");
-        int N = sc.nextInt();
-        int[] sequence = new int[N];
-        for (int i = 0; i < N; i++)
+        String line = possibilities.getNextLine();
+        if (line == null)
         {
-            sequence[i] = i + 1;
+            return false;
         }
-        System.out.println("The original sequence is: ");
-        for (int i = 0; i < N; i++)
+        String fields[] = line.split(",");
+        int cursor = 0;
+        int i = 0;
+        while (i < 13)
         {
-            System.out.print(sequence[i] + " ");
+            if (Integer.parseInt(fields[i]) != 0) //put into main route
+            {
+
+                curRoute[cursor] = Integer.parseInt(fields[i]);
+                cursor++;
+            }
+            else //term zero until end truck
+            {
+                if (cursor % 10 == 0)
+                {
+                    curRoute[cursor] = 0;
+                    cursor += 1;
+                }
+                while (cursor % 10 != 0)
+                {
+                    curRoute[cursor] = 0;
+                    cursor++;
+                }
+            }
+            i++;
         }
-        System.out.println("\nThe permuted sequences are: ");
-        permute(sequence, 0);
-        sc.close();
+        while (cursor < 40)
+        {
+            curRoute[cursor] = 0;
+            cursor++;
+        }
+        return true;
+    }
+
+    /**
+     * Main for run program.
+     * @param args
+     */
+    public static void main(String[] args)
+    {
+        double lowestCost = 9999999;
+        double curCost = 0;
+        int[] bestroute = new int[40];
+        PathCal.initializeCalculator();
+        int i = 0;
+        BruteForce.readFile();
+
+        while (BruteForce.readLine())
+        {
+            if (WeightConstraint.checkWeight(curRoute))
+            {
+                while (i < 40)
+                {
+                    if (i % 10 == 0)
+                    {
+                        System.out.println();
+                    }
+                    System.out.print(BruteForce.curRoute[i] + " ");
+                    i++;
+                }
+                System.out.println();
+                i = 0;
+                curCost = PathCal.calGeneCost(curRoute);
+                System.out.println("this costs " + curCost);
+                if (bestroute == null)
+                {
+                    System.out.println("initialize best route");
+                    bestroute = curRoute;
+                }
+                if (curCost < lowestCost)
+                {
+                    System.out.println("set new best cost");
+                    lowestCost = curCost;
+                    for (int k = 0; k < 40; k++)
+                    {
+                        bestroute[k] = curRoute[k];
+                    }
+                }
+                System.out.println("line success" + lineNumber);
+                lineNumber++;
+            }
+            else
+            {
+                lineNumber++;
+                System.out.println("skipping line" + (lineNumber - 1) + " due to constraint");
+            }
+        }
+        System.out.println("solution's answer = " + lowestCost);
+        System.out.print("solution :");
+        i = 0;
+        while (i < 40)
+        {
+            System.out.print(bestroute[i] + " ");
+            i++;
+        }
+        i = 0;
+
+        /*write part*/
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try
+        {
+            String content = new String();
+            while (i < 40)
+            {
+                content += bestroute[i];
+                content += " ";
+                i++;
+            }
+            content += "\n\n best cost = " + lowestCost;
+            fw = new FileWriter(FILENAME);
+            bw = new BufferedWriter(fw);
+            bw.write(content);
+
+            System.out.println("Done");
+        }
+        catch (IOException e)
+        {
+
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if (bw != null)
+                {
+                    bw.close();
+                }
+                if (fw != null)
+                {
+                    fw.close();
+                }
+            }
+            catch (IOException ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+        possibilities.close();
     }
 }

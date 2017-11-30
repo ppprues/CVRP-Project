@@ -1,8 +1,9 @@
-/*  TextFileReader.java
+/**
+ *  TextFileReader.java
  *
- *   Reads a text file line by line
+ *  Reads a text file line by line
  *
- *   Created by Sally Goldin, 21 March 2012
+ *  Created by Sally Goldin, 21 March 2012
  */
 
 import java.io.*;
@@ -13,7 +14,7 @@ import java.io.*;
  */
 public class TextFileReader
 {
-    /** Reader object to access the file */
+    /* Reader object to access the file */
     private BufferedReader reader = null;
 
     /**

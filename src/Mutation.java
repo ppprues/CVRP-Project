@@ -38,9 +38,10 @@ public class Mutation
         int temp = array[r1];
         array[r1] = array[r2];
         array[r2] = temp;
-        if(WeightConstraint.checkWeight(array)==false)
+
+        if (!WeightConstraint.checkWeight(array))
         {
-            System.out.println("constraint fault");
+            //System.out.println("constraint fault");
             array = swapMutation(parent);
         }
         return array;
@@ -73,10 +74,11 @@ public class Mutation
             array[i + 1] = array[i];
             array[i] = temp2;
         }
-        if(WeightConstraint.checkWeight(array)==false)
+
+        if (!WeightConstraint.checkWeight(array))
         {
-            System.out.println("constraint fault");
-            array=insertMutation(parent);
+            //System.out.println("constraint fault");
+            array = insertMutation(parent);
         }
         return array;
 
@@ -114,10 +116,11 @@ public class Mutation
                 endCount--;
             }
         }
-        if(WeightConstraint.checkWeight(array)==false)
+
+        if (!WeightConstraint.checkWeight(array))
         {
-            System.out.println("constraint fault");
-            array= inversionMutation(parent);
+            //System.out.println("constraint fault");
+            array = inversionMutation(parent);
         }
 
         return array;

@@ -1,4 +1,4 @@
-/*
+/**
  *  DrawingCanvas
  *
  *  Simple class to act as a place to draw vectors.
@@ -7,8 +7,8 @@
  *  Updated 30 December 2011
  */
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * Simple subclass of JPanel that allows us to set the size of
@@ -17,31 +17,31 @@ import java.awt.*;
 public class DrawingCanvas extends JPanel
 {
     /* Preferred size */
-   private Dimension desiredSize = null;
-    
-   /**
-    * Constructor sets desired size.
-    * @param width   Desired width
-    * @param height  Desired height
-    */
-   public DrawingCanvas(int width, int height)
-   {
-       desiredSize = new Dimension(width,height);
-   }
- 
-   /**
-    * Override so that we can control the size.
-    */
-   public Dimension getPreferredSize()
-   {
-       return desiredSize;
-   } 
+    private Dimension desiredSize = null;
 
-   /**
-    * Clear the panel to background color.
-    */
-   public void clear()
-   {
-	updateUI();
-   }
+    /**
+     * Constructor sets desired size.
+     * @param width   Desired width
+     * @param height  Desired height
+     */
+    public DrawingCanvas(int width, int height)
+    {
+        desiredSize = new Dimension(width, height);
+    }
+
+    /**
+     * Override so that we can control the size.
+     */
+    public Dimension getPreferredSize()
+    {
+        return desiredSize;
+    }
+
+    /**
+     * Clear the panel to background color.
+     */
+    public void clear()
+    {
+        updateUI();
+    }
 }

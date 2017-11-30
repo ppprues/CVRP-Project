@@ -1,15 +1,14 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
-
 /**
  * FigureViewer
  *
  * Simple graphical application to display simple geometric figures
  *
- * 10 September 2017
+ * Created by Sally Goldin, 10 September 2017
  */
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
 
 public class FigureViewer extends JFrame
 {

@@ -1,23 +1,35 @@
+/**
+ *  Gene
+ *
+ *  Simple class of Genes and Gene collection.
+ *
+ *  4 November 2017
+ */
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Gene
 {
-    public static ArrayList<int[]> geneCollection = new ArrayList<>();
-    private static int[] solution = new int[60];
+    /* Zero Generation */
+    public static ArrayList<int[]> zeroGeneration = new ArrayList<>();
 
+    /**
+     * Random 1-15 numbers to array of 40 index.
+     * @return all random 1-15 numbers in 40 array
+     */
     private static int[] getRandom()
     {
+        boolean overLoad = false;
         int inputNode = 1;
         int[] randomSol = new int[40];
-        int[] sumWeight = new int[4];
+
         Random random = new Random();
-        boolean overLoad = false;
-        while (overLoad == false)
+
+        while (!overLoad)
         {
             while (inputNode <= 10)
             {
-
                 int inputAddress = random.nextInt(39);
                 if (randomSol[inputAddress] == 0)
                 {
@@ -27,20 +39,28 @@ public class Gene
             }
             overLoad = WeightConstraint.checkWeight(randomSol);
         }
-
-
         return randomSol;
     }
 
+    /**
+     * Calculate gene collection for number of times.
+     * @param numberGene number of gene in zero generation
+     */
     public static void calGeneCollection(int numberGene)
     {
+        int[] solution = new int[60];
         for (int i = 0; i < numberGene; i++)
         {
             solution = getRandom();
-            geneCollection.add(solution);
+            zeroGeneration.add(solution);
         }
     }
 
+    /**
+     * Calculate the best solution of gene collection.
+     * @param geneColl gene collection
+     * @return index of the best solution in gene collection
+     */
     public static int calBestSolution(ArrayList<int[]> geneColl)
     {
         double cost = 0;
@@ -64,37 +84,24 @@ public class Gene
                     indexVal = i;
                 }
             }
-            System.out.print("\n");
         }
-        //System.out.println("FIRSTT = "+PathCal.calGeneCost(geneCollection.get(indexVal)));
         return indexVal;
     }
 
-    public static void main(String[] args)
-    {
-        PathCal.initializeCalculator();
-        calGeneCollection(10);
-        /*for (int i = 0; i < geneCollection.size(); i++)
-        {
-            for (int j = 0; j < geneCollection.get(i).length; j++)
-            {
-                System.out.print(geneCollection.get(i)[j] + " ");
-            }
-            System.out.print("\n");
-        }*/
-
-        System.out.println(calBestSolution(geneCollection));
-    }
-
+    /**
+     * Check the truck load.
+     * @param gene
+     * @return
+     */
     public static boolean checkOverLoad(int[] gene)
     {
         boolean overLoad = false;
         int[] sumWeight = new int[4];
-        for (int i=0;i<4;i++)
+        for (int i = 0; i < 4; i++)
         {
-            for (int j=0;j<10*i;j++)
+            for (int j = 0; j < 10 * i; j++)
             {
-                sumWeight[i] = sumWeight[i]+DataReader.getDemands()[gene[j]];
+                sumWeight[i] = sumWeight[i] + DataReader.getDemands()[gene[j]];
             }
             if (sumWeight[i] > DataReader.getTruckLoad()[i][0])
             {
@@ -107,5 +114,17 @@ public class Gene
             }
         }
         return overLoad;
+    }
+
+    /**
+     * Main for testing
+     * @param args
+     */
+    public static void main(String[] args)
+    {
+        PathCal.initializeCalculator();
+        calGeneCollection(10);
+
+        System.out.println(calBestSolution(zeroGeneration));
     }
 }
