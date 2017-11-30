@@ -78,7 +78,16 @@ public class Algorithm
             }
             i++;
         }
+
         System.out.println("Best cost: "+PathCal.calGeneCost(theBest));
+
+
+
+        Graph.initialize();
+        Graph.plotGene(bestGene);
+
+
         System.out.println("gen : "+i);
+
     }
 }

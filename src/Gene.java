@@ -47,7 +47,6 @@ public class Gene
         double minCost = 0;
         int indexVal = 0;
 
-
         for (int i = 0; i < geneColl.size(); i++)
         {
             if (i == 0)
@@ -58,14 +57,14 @@ public class Gene
             else
             {
                 cost = PathCal.calGeneCost(geneColl.get(i));
-                System.out.print("\n");
+
                 if (cost < minCost)
                 {
                     minCost = cost;
                     indexVal = i;
                 }
             }
-
+            System.out.print("\n");
         }
         //System.out.println("FIRSTT = "+PathCal.calGeneCost(geneCollection.get(indexVal)));
         return indexVal;
