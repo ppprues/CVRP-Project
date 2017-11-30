@@ -7,23 +7,29 @@ public class WeightConstraint {
         int curTruckWeight=0;
         int i=0;
         int truckCount=0;
-        while(truckCount<4)
+
+
+        while (i<40)
         {
-            while (i<60)
+            if(solution[i]!=0)
             {
-                if(solution[i]!=0)
-                {
-                    curTruckWeight += productWeight[demands[solution[i]]];
-                    if(curTruckWeight>truckLoad[truckCount][0])
-                    {
-                        return false;
-                    }
-                }
-                i++;
+                curTruckWeight += productWeight[demands[solution[i]]];
             }
-            curTruckWeight=0;
-            truckCount++;
+            if(curTruckWeight>truckLoad[truckCount][0])
+            {
+                System.out.println("truckloadcap "+truckCount+" "+truckLoad[truckCount][0]);
+                System.out.println("curtruckweight"+curTruckWeight);
+                return false;
+            }
+            if(i==10 ||i==20 ||i==30)
+            {
+                curTruckWeight=0;
+                truckCount++;
+            }
+            i++;
         }
+
+
         return true;
     }
 }

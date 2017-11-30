@@ -12,8 +12,8 @@ public class Gene
         int[] randomSol = new int[40];
         int[] sumWeight = new int[4];
         Random random = new Random();
-        boolean overLoad = true;
-        while (overLoad == true)
+        boolean overLoad = false;
+        while (overLoad == false)
         {
             while (inputNode <= 10)
             {
@@ -25,7 +25,7 @@ public class Gene
                     inputNode++;
                 }
             }
-            overLoad = checkOverLoad(randomSol);
+            overLoad = WeightConstraint.checkWeight(randomSol);
         }
 
 

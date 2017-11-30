@@ -79,38 +79,40 @@ public class NewBruteForce extends TextFileReader
 
         while(NewBruteForce.readLine()==true)
         {
-
-            while (i < 40) {
-                if(i%10==0)
-                {
-                    System.out.println();
-                }
-                System.out.print(NewBruteForce.curRoute[i] + " ");
-                i++;
-            }
-            System.out.println();
-            i=0;
-            curCost=PathCal.calGeneCost(curRoute);
-            System.out.println("this costs "+curCost);
-            if(bestroute==null)
+            if(WeightConstraint.checkWeight(curRoute)==true)
             {
-                System.out.println("initialize best route");
-                bestroute=curRoute;
-            }
-            if(curCost<lowestCost)
-            {
-                System.out.println("set new best cost");
-                lowestCost=curCost;
-                for (int k=0;k<40;k++)
-                {
-                    bestroute[k] = curRoute[k];
+                while (i < 40) {
+                    if (i % 10 == 0) {
+                        System.out.println();
+                    }
+                    System.out.print(NewBruteForce.curRoute[i] + " ");
+                    i++;
                 }
+                System.out.println();
+                i = 0;
+                curCost = PathCal.calGeneCost(curRoute);
+                System.out.println("this costs " + curCost);
+                if (bestroute == null) {
+                    System.out.println("initialize best route");
+                    bestroute = curRoute;
+                }
+                if (curCost < lowestCost) {
+                    System.out.println("set new best cost");
+                    lowestCost = curCost;
+                    for (int k = 0; k < 40; k++) {
+                        bestroute[k] = curRoute[k];
+                    }
+                }
+
+
+                System.out.println("line success" + lineNumber);
+                lineNumber++;
             }
-
-
-            System.out.println("line success"+lineNumber);
-            lineNumber++;
-
+            else
+            {
+                lineNumber++;
+                System.out.println("skipping line"+(lineNumber-1)+" due to constraint");
+            }
         }
         System.out.println("solution's answer = "+lowestCost);
         System.out.print("solution :");

@@ -56,7 +56,7 @@ public class DataReader extends TextFileReader
         String curLine = productFile.getNextLine();
         while (curLine != null)
         {
-            productWeight[i + 1] = Double.parseDouble(curLine);
+            productWeight[i ] = Double.parseDouble(curLine);
             i++;
             curLine = productFile.getNextLine();
         }
