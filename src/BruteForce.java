@@ -1,9 +1,9 @@
 /**
- *  BruteForce
+ * BruteForce
  *
- *  Simple class of BruteForce.
+ * Simple class of BruteForce.
  *
- *  4 November 2017
+ * 4 November 2017
  */
 
 import java.io.BufferedWriter;
@@ -12,10 +12,10 @@ import java.io.IOException;
 
 public class BruteForce extends TextFileReader
 {
-    private static int lineNumber = 0;
-    private static int[] curRoute = new int[40];
-    private static TextFileReader possibilities = new TextFileReader();
     private static final String FILENAME = "bruteforceanswer.txt";
+    private static int[] curRoute = new int[32];
+    private static int lineNumber = 0;
+    private static TextFileReader possibilities = new TextFileReader();
 
     public static void readFile()
     {
@@ -24,6 +24,7 @@ public class BruteForce extends TextFileReader
 
     /**
      * Read each line
+     *
      * @return false if end of the file
      */
     public static boolean readLine()
@@ -36,7 +37,7 @@ public class BruteForce extends TextFileReader
         String fields[] = line.split(",");
         int cursor = 0;
         int i = 0;
-        while (i < 13)
+        while (i < 11)
         {
             if (Integer.parseInt(fields[i]) != 0) //put into main route
             {
@@ -46,12 +47,12 @@ public class BruteForce extends TextFileReader
             }
             else //term zero until end truck
             {
-                if (cursor % 10 == 0)
+                if (cursor % 8 == 0)
                 {
                     curRoute[cursor] = 0;
                     cursor += 1;
                 }
-                while (cursor % 10 != 0)
+                while (cursor % 8 != 0)
                 {
                     curRoute[cursor] = 0;
                     cursor++;
@@ -59,7 +60,7 @@ public class BruteForce extends TextFileReader
             }
             i++;
         }
-        while (cursor < 40)
+        while (cursor < 32)
         {
             curRoute[cursor] = 0;
             cursor++;
@@ -69,13 +70,12 @@ public class BruteForce extends TextFileReader
 
     /**
      * Main for run program.
-     * @param args
      */
     public static void main(String[] args)
     {
         double lowestCost = 9999999;
         double curCost = 0;
-        int[] bestroute = new int[40];
+        int[] bestroute = new int[32];
         PathCal.initializeCalculator();
         int i = 0;
         BruteForce.readFile();
@@ -84,9 +84,9 @@ public class BruteForce extends TextFileReader
         {
             if (WeightConstraint.checkWeight(curRoute))
             {
-                while (i < 40)
+                while (i < 32)
                 {
-                    if (i % 10 == 0)
+                    if (i % 8 == 0)
                     {
                         System.out.println();
                     }
@@ -106,7 +106,7 @@ public class BruteForce extends TextFileReader
                 {
                     System.out.println("set new best cost");
                     lowestCost = curCost;
-                    for (int k = 0; k < 40; k++)
+                    for (int k = 0; k < 32; k++)
                     {
                         bestroute[k] = curRoute[k];
                     }
@@ -123,7 +123,7 @@ public class BruteForce extends TextFileReader
         System.out.println("solution's answer = " + lowestCost);
         System.out.print("solution :");
         i = 0;
-        while (i < 40)
+        while (i < 32)
         {
             System.out.print(bestroute[i] + " ");
             i++;
@@ -136,7 +136,7 @@ public class BruteForce extends TextFileReader
         try
         {
             String content = new String();
-            while (i < 40)
+            while (i < 32)
             {
                 content += bestroute[i];
                 content += " ";
@@ -146,12 +146,10 @@ public class BruteForce extends TextFileReader
             fw = new FileWriter(FILENAME);
             bw = new BufferedWriter(fw);
             bw.write(content);
-
             System.out.println("Done");
         }
         catch (IOException e)
         {
-
             e.printStackTrace();
         }
         finally

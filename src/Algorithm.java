@@ -1,9 +1,9 @@
 /**
- *  Algorithm
+ * Algorithm
  *
- *  Simple class of Genetic Algorithm.
+ * Simple class of Genetic Algorithm.
  *
- *  4 November 2017
+ * 4 November 2017
  */
 
 import java.io.IOException;
@@ -13,7 +13,8 @@ public class Algorithm
 {
     /**
      * Asks for a string and returns it as the value of the function
-     * @param   prompt    String to print, telling which coordinate
+     *
+     * @param prompt String to print, telling which coordinate
      * @return The string the user entered (maximum 100 chars long)
      */
     public static String getString(String prompt)
@@ -42,14 +43,13 @@ public class Algorithm
 
     /**
      * Main algorithm
-     * @param args
      */
     public static void main(String[] args)
     {
         /* Default value */
         int noZeroGen = 5000;
-        int noPopulation = 200;
-        int maxDuplicate = 2;
+        int noPopulation = 100;
+        int maxDuplicate = 10;
 
         if (args.length == 0) // No program arguments
         {
@@ -133,11 +133,11 @@ public class Algorithm
         Gene.calGeneCollection(noZeroGen);
 
         int duplicateResults = 0;   /* Duplicate results count */
-        int geneCount = 0;          /* Gene count */
+        int geneCount;              /* Gene count */
         int generationCount = 1;    /* Generation count */
         int[] currentMinGene;       /* current min gene */
         int[] optimalSolution;      /* optimal solution */
-        int[][] parent = new int[noPopulation][40]; /* Parent generation or previous generation */
+        int[][] parent = new int[noPopulation][32]; /* Parent generation or previous generation */
         ArrayList<int[]> currentGeneration = new ArrayList<>(); /* Current generation */
 
         /* Select top best from generation 0 */
@@ -171,9 +171,9 @@ public class Algorithm
             }
 
             /* Select top best from current generation to new generation */
-            for (int j = 0; j < noPopulation; j++)
+            for (geneCount = 0; geneCount < noPopulation; geneCount++)
             {
-                parent[j] = currentGeneration.get(Gene.calBestSolution(currentGeneration));
+                parent[geneCount] = currentGeneration.get(Gene.calBestSolution(currentGeneration));
                 currentGeneration.remove(Gene.calBestSolution(currentGeneration));
             }
 
@@ -187,7 +187,7 @@ public class Algorithm
             if (currentMinGene == optimalSolution) //if best result is the same
             {
                 duplicateResults++;
-                if (duplicateResults > maxDuplicate)
+                if (duplicateResults >= maxDuplicate)
                 {
                     break;
                 }
@@ -205,11 +205,11 @@ public class Algorithm
             /* Print best solution for each generation */
             int cursor = 0;
             int truckCount = 0;
-            int[][] truckPath = new int[4][10];
+            int[][] truckPath = new int[4][8];
             System.out.println("Generation: " + generationCount);
             for (int i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     truckPath[i][j] = optimalSolution[cursor];
                     cursor++;
@@ -218,7 +218,7 @@ public class Algorithm
             while (truckCount < 4)
             {
                 System.out.print("Truck " + (truckCount + 1) + ": ");
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     if (truckPath[truckCount][i] != 0)
                     {
