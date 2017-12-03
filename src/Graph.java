@@ -1,20 +1,20 @@
 /**
- *  Graph
+ * Graph
  *
- *  Simple class of making UI.
+ * Simple class of making UI.
  *
- *  4 November 2017
+ * 4 November 2017
  */
 
 import java.awt.*;
 
 public class Graph
 {
-    /* Build UI */
-    private static FigureViewer viewer = new FigureViewer();
-
-    /* All colors to paint */
+    /** All colors to paint */
     private static Color colors[] = {Color.RED, Color.GREEN, Color.BLUE, Color.MAGENTA};
+
+    /** Build UI */
+    private static FigureViewer viewer = new FigureViewer();
 
     /**
      * Initialize text in canvas.
@@ -36,6 +36,7 @@ public class Graph
 
     /**
      * Plot graph from input's gene.
+     *
      * @param gene input's gene
      */
     public static void plotGene(int[] gene)
@@ -45,7 +46,7 @@ public class Graph
         int nodeCount = 0;
         int previousNode = 0;
         int cursor = 0;
-        int[][] truckPath = new int[4][10]; //path of trucks
+        int[][] truckPath = new int[4][8]; //path of trucks
 
         Graphics2D graphics = viewer.getViewerGraphics();
         graphics.setPaint(Color.BLACK);
@@ -53,7 +54,7 @@ public class Graph
 
         for (int i = 0; i < 4; i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 8; j++)
             {
                 truckPath[i][j] = gene[cursor];
                 cursor++;
@@ -63,7 +64,7 @@ public class Graph
         while (truckCount < 4)
         {
             graphics.setPaint(colors[truckCount]);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 if (truckPath[truckCount][i] != 0) // Node exists
                 {

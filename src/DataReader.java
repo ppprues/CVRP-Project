@@ -1,20 +1,20 @@
 /**
- *  DataReader
+ * DataReader
  *
- *  Read all data from text files to initialize.
+ * Read all data from text files to initialize.
  *
- *  4 November 2017
+ * 4 November 2017
  */
 
 public class DataReader extends TextFileReader
 {
-    /* All data */
+    /** All data */
     private static int[] demands = new int[11];
-    private static int[][] nodes = new int[11][2];
+    private static int[][] nodes = new int[9][2];
     private static double[] productWeight = new double[5];
     private static double[][] truckLoad = new double[4][2];
 
-    /* All text files */
+    /** All text files */
     private static TextFileReader demandFile = new TextFileReader();
     private static TextFileReader nodeFile = new TextFileReader();
     private static TextFileReader productFile = new TextFileReader();
@@ -103,6 +103,7 @@ public class DataReader extends TextFileReader
 
     /**
      * Get demands data.
+     *
      * @return array of demands
      */
     public static int[] getDemands()
@@ -112,6 +113,7 @@ public class DataReader extends TextFileReader
 
     /**
      * Get nodes data by x,y coordinates.
+     *
      * @return 2-dimension array of demands
      */
     public static int[][] getNodes()
@@ -121,6 +123,7 @@ public class DataReader extends TextFileReader
 
     /**
      * Get product weight data for each truck.
+     *
      * @return array of demands
      */
     public static double[] getProductWeight()
@@ -130,6 +133,7 @@ public class DataReader extends TextFileReader
 
     /**
      * Get truck data by maximum load and cost per km.
+     *
      * @return 2-dimension array of demands
      */
     public static double[][] getTruckLoad()

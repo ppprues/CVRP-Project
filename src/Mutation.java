@@ -1,14 +1,6 @@
-/*
- *  A Simple Introduction to Genetic Algorithms
- *  Copyright (C) 2015 
- *  @author Dr Noureddin M. Sadawi (noureddin.sadawi@gmail.com)
- *  
- *  This program is free software: you can redistribute it and/or modify
- *  it as you wish ...  
- *  
- *  I ask you only, as a professional courtesy, to cite my name, web page 
- *  and YouTube Channel!
- *  
+/**
+ * A Simple Introduction to Genetic Algorithms
+ * Copyright (C) 2015
  */
 
 import java.util.Random;
@@ -16,36 +8,6 @@ import java.util.Random;
 public class Mutation
 {
     private static Random random = new Random();
-    /**
-     * performs swap mutation on an array of ints
-     *
-     * @param parent the int array
-     * @return array the mutated array
-     */
-    public static int[] swapMutation(int[] parent)
-    {
-        int[] array = parent.clone();
-        int l = array.length;
-        //get 2 random integers between 0 and size of array
-        int r1 = random.nextInt(l);
-        int r2 = random.nextInt(l);
-        //to make sure the 2 numbers are different
-        while (r1 == r2)
-        {
-            r2 = random.nextInt(l);
-        }
-        //swap array elements at those indices
-        int temp = array[r1];
-        array[r1] = array[r2];
-        array[r2] = temp;
-
-        if (!WeightConstraint.checkWeight(array))
-        {
-            //System.out.println("constraint fault");
-            array = swapMutation(parent);
-        }
-        return array;
-    }
 
     /**
      * performs insert mutation on an array of ints
@@ -123,6 +85,37 @@ public class Mutation
             array = inversionMutation(parent);
         }
 
+        return array;
+    }
+
+    /**
+     * performs swap mutation on an array of ints
+     *
+     * @param parent the int array
+     * @return array the mutated array
+     */
+    public static int[] swapMutation(int[] parent)
+    {
+        int[] array = parent.clone();
+        int l = array.length;
+        //get 2 random integers between 0 and size of array
+        int r1 = random.nextInt(l);
+        int r2 = random.nextInt(l);
+        //to make sure the 2 numbers are different
+        while (r1 == r2)
+        {
+            r2 = random.nextInt(l);
+        }
+        //swap array elements at those indices
+        int temp = array[r1];
+        array[r1] = array[r2];
+        array[r2] = temp;
+
+        if (!WeightConstraint.checkWeight(array))
+        {
+            //System.out.println("constraint fault");
+            array = swapMutation(parent);
+        }
         return array;
     }
 }

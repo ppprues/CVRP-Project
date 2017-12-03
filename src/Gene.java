@@ -1,9 +1,9 @@
 /**
- *  Gene
+ * Gene
  *
- *  Simple class of Genes and Gene collection.
+ * Simple class of Genes and Gene collection.
  *
- *  4 November 2017
+ * 4 November 2017
  */
 
 import java.util.ArrayList;
@@ -11,44 +11,17 @@ import java.util.Random;
 
 public class Gene
 {
-    /* Zero Generation */
+    /** Zero Generation */
     public static ArrayList<int[]> zeroGeneration = new ArrayList<>();
 
     /**
-     * Random 1-15 numbers to array of 40 index.
-     * @return all random 1-15 numbers in 40 array
-     */
-    private static int[] getRandom()
-    {
-        boolean overLoad = false;
-        int inputNode = 1;
-        int[] randomSol = new int[40];
-
-        Random random = new Random();
-
-        while (!overLoad)
-        {
-            while (inputNode <= 10)
-            {
-                int inputAddress = random.nextInt(39);
-                if (randomSol[inputAddress] == 0)
-                {
-                    randomSol[inputAddress] = inputNode;
-                    inputNode++;
-                }
-            }
-            overLoad = WeightConstraint.checkWeight(randomSol);
-        }
-        return randomSol;
-    }
-
-    /**
      * Calculate gene collection for number of times.
+     *
      * @param numberGene number of gene in zero generation
      */
     public static void calGeneCollection(int numberGene)
     {
-        int[] solution = new int[60];
+        int[] solution;
         for (int i = 0; i < numberGene; i++)
         {
             solution = getRandom();
@@ -58,12 +31,13 @@ public class Gene
 
     /**
      * Calculate the best solution of gene collection.
+     *
      * @param geneColl gene collection
      * @return index of the best solution in gene collection
      */
     public static int calBestSolution(ArrayList<int[]> geneColl)
     {
-        double cost = 0;
+        double cost;
         double minCost = 0;
         int indexVal = 0;
 
@@ -87,38 +61,37 @@ public class Gene
         }
         return indexVal;
     }
-
     /**
-     * Check the truck load.
-     * @param gene
-     * @return
+     * Random 1-15 numbers to array of 40 index.
+     *
+     * @return all random 1-15 numbers in 40 array
      */
-    public static boolean checkOverLoad(int[] gene)
+    private static int[] getRandom()
     {
         boolean overLoad = false;
-        int[] sumWeight = new int[4];
-        for (int i = 0; i < 4; i++)
+        int inputNode = 1;
+        int[] randomSol = new int[32];
+
+        Random random = new Random();
+
+        while (!overLoad)
         {
-            for (int j = 0; j < 10 * i; j++)
+            while (inputNode <= 8)
             {
-                sumWeight[i] = sumWeight[i] + DataReader.getDemands()[gene[j]];
+                int inputAddress = random.nextInt(31);
+                if (randomSol[inputAddress] == 0)
+                {
+                    randomSol[inputAddress] = inputNode;
+                    inputNode++;
+                }
             }
-            if (sumWeight[i] > DataReader.getTruckLoad()[i][0])
-            {
-                overLoad = true;
-                break;
-            }
-            else
-            {
-                overLoad = false;
-            }
+            overLoad = WeightConstraint.checkWeight(randomSol);
         }
-        return overLoad;
+        return randomSol;
     }
 
     /**
      * Main for testing
-     * @param args
      */
     public static void main(String[] args)
     {

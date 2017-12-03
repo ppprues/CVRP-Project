@@ -1,12 +1,15 @@
 /**
- *  TextFileReader.java
+ * TextFileReader.java
  *
- *  Reads a text file line by line
+ * Reads a text file line by line
  *
- *  Created by Sally Goldin, 21 March 2012
+ * Created by Sally Goldin, 21 March 2012
  */
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * This class encapsulates the weird Java file IO to give students
@@ -14,13 +17,28 @@ import java.io.*;
  */
 public class TextFileReader
 {
-    /* Reader object to access the file */
+    /** Reader object to access the file */
     private BufferedReader reader = null;
+
+    /**
+     * Explicitly close the reader to free resources
+     */
+    public void close()
+    {
+        try
+        {
+            reader.close();
+        }
+        catch (IOException ioe)
+        {
+        }
+    }
 
     /**
      * Open a text file, if possible. It will be closed
      * when we open a new file, or get to the end of the old one.
-     * @param filename   File to open
+     *
+     * @param filename File to open
      * @return true if successfully opened, false if not found.
      */
     public boolean open(String filename)
@@ -51,6 +69,7 @@ public class TextFileReader
 
     /**
      * Try to read a line from the open file.
+     *
      * @return Line as a string, or null if an error occurred.
      */
     public String getNextLine()
@@ -72,19 +91,5 @@ public class TextFileReader
             lineRead = null;
         }
         return lineRead;
-    }
-
-    /**
-     * Explicitly close the reader to free resources
-     */
-    public void close()
-    {
-        try
-        {
-            reader.close();
-        }
-        catch (IOException ioe)
-        {
-        }
     }
 }
