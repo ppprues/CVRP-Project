@@ -61,6 +61,7 @@ public class Gene
         }
         return indexVal;
     }
+
     /**
      * Random 1-15 numbers to array of 40 index.
      *
